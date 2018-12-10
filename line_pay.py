@@ -26,7 +26,7 @@ class LinePay:
             method,
             url,
             fields=fields,
-            body=body,
+            body=json.dumps(body).encode('utf-8'),
             headers=self.__headers
         )
         return json.loads(r.data.decode('utf-8'))

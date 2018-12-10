@@ -38,7 +38,7 @@ def pay_reserve():
     return redirect(redirect_url)
 
 
-@app.route("/pay/confirm", methods=['POST'])
+@app.route("/pay/confirm", methods=['GET'])
 def pay_confirm():
     transaction_id = request.args.get('transactionId')
     obj = Transactions.query.filter_by(transaction_id=transaction_id).one_or_none()
@@ -48,6 +48,10 @@ def pay_confirm():
     response = pay.confirm_payments(transaction_id=transaction_id, amount=obj.amount, currency=obj.currency)
     print(response["returnCode"])
     print(response["returnMessage"])
+
+    db.session.query(Transactions).filter(Transactions.transaction_id == transaction_id).delete()
+    db.session.commit()
+    db.session.close()
     return "Payment successfully finished."
 
 
