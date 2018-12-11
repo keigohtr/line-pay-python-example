@@ -6,7 +6,7 @@ from models import db, db_url, Transactions
 LINE_PAY_URL = 'https://sandbox-api-pay.line.me'
 LINE_PAY_CHANNEL_ID = 'your channel'
 LINE_PAY_CHANNEL_SECRET = 'your secret'
-LINE_PAY_CONFIRM_URL = 'https://yourhost:5000/pay/confirm'
+LINE_PAY_CONFIRM_URL = 'http://localhost:5000/pay/confirm'
 app = Flask(__name__)
 pay = LinePay(channel_id=LINE_PAY_CHANNEL_ID, channel_secret=LINE_PAY_CHANNEL_SECRET,
               line_pay_url=LINE_PAY_URL, confirm_url=LINE_PAY_CONFIRM_URL)
